@@ -1,6 +1,7 @@
 
 library(geodata)
-library(tidyverse)
+library(readr)
+library(dplyr)
 
 cerambyx <- geodata::sp_occurrence(
     genus   = "Cerambyx",
