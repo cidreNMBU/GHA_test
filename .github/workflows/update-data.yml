@@ -1,3 +1,11 @@
+name: Download data from GBIF
+
+on:
+  push:
+    branches: main
+  schedule:
+    - cron: '0 */6 * * *'
+
 jobs:
   update-data:
     runs-on: ubuntu-latest
