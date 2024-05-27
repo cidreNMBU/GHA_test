@@ -1,6 +1,7 @@
 
 library(geodata)
 library(readr)
+library(sf)
 library(dplyr)
 
 cerambyx <- geodata::sp_occurrence(
