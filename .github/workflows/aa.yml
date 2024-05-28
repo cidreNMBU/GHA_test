@@ -15,20 +15,16 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v4
-
       - name: SessionInfo
         run: R -q -e 'sessionInfo()'
-
       - name: Install system dependencies
         run: |
           apt-get update
           apt-get install -y libgdal-dev libgeos-dev libproj-dev libudunits2-dev
         shell: bash
-
       - name: Install R packages
         run: |
           Rscript -e "install.packages(c('geodata', 'readr', 'dplyr', 'sf', 'jsonlite'))"
-
       - name: Run R script
         run: |
           Rscript R/download_data.R
@@ -41,6 +37,7 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
+
       - uses: actions/checkout@v4
       - uses: r-lib/actions/setup-pandoc@v2
       - name: Install system dependencies
@@ -55,11 +52,9 @@ jobs:
       - name: Authorize and deploy app
         env:
           APPNAME: gha_app
-          ACCOUNT: hdzvlf-adrian-cidre0gonz0lez
+          ACCOUNT: ${{ secrets.RSCONNECT_USER }}
           SERVER: shinyapps.io
         run: |
           rsconnect::setAccountInfo("${{ secrets.RSCONNECT_USER }}", "${{ secrets.RSCONNECT_TOKEN }}", "${{ secrets.RSCONNECT_SECRET }}")
           rsconnect::deployApp(appName = "${{ env.APPNAME }}", account = "${{ env.ACCOUNT }}", server = "${{ env.SERVER }}")
         shell: Rscript {0}
-
-
