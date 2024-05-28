@@ -25,6 +25,8 @@ jobs:
           sudo apt-get install -y libgdal-dev libgeos-dev libproj-dev
       - name: Install R packages
         run: |
+          Rscript -e "install.packages('remotes')"
+          Rscript -e "remotes::install_github('rspatial/terra')"
           Rscript -e "install.packages(c('geodata', 'readr', 'dplyr', 'sf', 'jsonlite'))"
 
       - name: Run R script
