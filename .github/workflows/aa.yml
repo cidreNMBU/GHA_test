@@ -18,10 +18,9 @@ jobs:
         run: R -q -e 'sessionInfo()'
       - name: Install system dependencies
         run: |
+          add-apt-repository -y ppa:ubuntugis/ubuntugis-unstable
           apt-get install -y libgdal-dev libgeos-dev libproj-dev libudunits2-dev
-      - name: Install R packages
-        run: |
-          Rscript -e "install.packages(c('geodata', 'readr', 'dplyr', 'sf', 'jsonlite'))"
+      - uses: r-lib/actions/setup-renv@v2
 
       - name: Run R script
         run: |
