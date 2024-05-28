@@ -25,13 +25,9 @@ jobs:
           sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
           sudo apt-get update
           sudo apt-get install libgdal-dev libgeos-dev libproj-dev
-
-      - name: Verify installed libraries
-        run: |
-          ldconfig -p | grep proj
-          ls -l /usr/lib/x86_64-linux-gnu/libproj.so*
       - name: Install R packages
         run: |
+          Rscript -e "remotes::install_github('rspatial/terra')"
           Rscript -e "install.packages(c('geodata', 'readr', 'dplyr', 'sf', 'jsonlite'))"
 
       - name: Run R script
