@@ -12,16 +12,22 @@ jobs:
     container:
       image: rocker/r2u:22.04
     steps:
+
       - name: Checkout repository
         uses: actions/checkout@v4
+
       - name: SessionInfo
         run: R -q -e 'sessionInfo()'
+
       - name: Install system dependencies
         run: |
           apt-get update
-          sudo apt-get install -y libgdal-dev libgeos-dev libproj-dev libudunits2-dev
+          apt-get install -y libgdal-dev libgeos-dev libproj-dev libudunits2-dev
         shell: bash
-      - uses: r-lib/actions/setup-renv@v2
+
+      - name: Install R packages
+        run: |
+          Rscript -e "install.packages(c('geodata', 'readr', 'dplyr', 'sf', 'jsonlite'))"
 
       - name: Run R script
         run: |
