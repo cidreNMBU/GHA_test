@@ -18,8 +18,6 @@ jobs:
         run: R -q -e 'sessionInfo()'
       - name: Install system dependencies
         run: |
-      #     sudo add-apt-repository -y ppa:ubuntugis/ubuntugis-unstable
-      #     sudo apt-get update
           apt-get install -y libgdal-dev libgeos-dev libproj-dev libudunits2-dev
       - name: Install R packages
         run: |
