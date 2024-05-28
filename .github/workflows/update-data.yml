@@ -23,7 +23,13 @@ jobs:
           sudo add-apt-repository -y ppa:ubuntugis/ubuntugis-unstable
           sudo apt-get update
           sudo apt-get install -y libgdal-dev libgeos-dev libproj-dev libudunits2-dev
-          sudo ln -s /usr/lib/libproj.so.22 /usr/lib/libproj.so
+          sudo apt-get install -y libproj22
+          sudo ln -sf /usr/lib/x86_64-linux-gnu/libproj.so.22 /usr/lib/x86_64-linux-gnu/libproj.so
+
+      - name: Verify installed libraries
+        run: |
+          ldconfig -p | grep proj
+          ls -l /usr/lib/x86_64-linux-gnu/libproj.so*
       - name: Install R packages
         run: |
           Rscript -e "install.packages(c('geodata', 'readr', 'dplyr', 'sf', 'jsonlite'))"
