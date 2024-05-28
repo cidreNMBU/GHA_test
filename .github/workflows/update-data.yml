@@ -1,4 +1,4 @@
-name: Download data from GBIF 2
+name: Download data from GBIF
 
 on:
   push:
