@@ -18,7 +18,7 @@ cerambyx <- read_rds("data/cerambyx.rds")
 # 3. App ------------------------------------------------------------------
 
 ui <- page_sidebar(
-    title   = "Cerambyx dashboard test",
+    title   = "Cerambyx dashboard test 2",
     sidebar = sidebar(
         selectInput(
             "year",
